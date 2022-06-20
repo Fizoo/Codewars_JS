@@ -1,4 +1,4 @@
-function findDiscounted(prices){
+const findDiscounted = prices => {
     let newArr=[]
     prices.split(' ').map(el=>Number(el)).
     forEach(((el,i,arr)=> {
@@ -11,7 +11,7 @@ function findDiscounted(prices){
     }))
     return newArr
     //your code here
-}
+};
 
 console.log(findDiscounted("15 20 60 75 80 100")) //,"15 60 75"
 console.log(findDiscounted("9 9 12 12 12 15 16 20")) //,"9 9 12 15"
