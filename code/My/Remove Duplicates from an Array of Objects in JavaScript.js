@@ -6,10 +6,9 @@ const dublicate=array=>{
     },[])
 }
 */
-/*
-with Set and filter
+//with Set and filter
 
-const dublicate=array=>{
+/*const dublicate=array=>{
     const seen = new Set();
 
     return array.map(el=>el.category).filter(el=>{
@@ -17,15 +16,19 @@ const dublicate=array=>{
         seen.add(el.name)
         return !dublicate
     })
-}
-*/
+}*/
 
 /*
 with Map
 */
-const dublicate =arr=> {
+/*const dublicate =arr=> {
    const array= arr.map(el=>el.category)
        return [...new Map(array.map(item => [item.name, item])).values()]
+}*/
+
+const dublicate =dupAddress=> {
+    const arr=dupAddress.map(el=>el.category)
+    return [...new Set([...arr.map(address => arr[address.id])])]
 }
 
 const list=[
