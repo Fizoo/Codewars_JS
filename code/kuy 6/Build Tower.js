@@ -1,14 +1,8 @@
-function towerBuilder(nFloors) {
-    let arr=[]
-    for (let i = 0; i < nFloors; i++) {
-        let s=''
-        for (let j = nFloors-i; j >=0 ; j) {
-            s+='*'
-        }
-        arr.push(s)
-
-    }
-    return arr
+function towerBuilder(n) {
+    return [...Array(n)].map(
+        (_, i) =>
+            " ".repeat(n - 1 - i) + "*".repeat(i * 2 + 1) + " ".repeat(n - 1 - i)
+    );
     // build here
 }
 
