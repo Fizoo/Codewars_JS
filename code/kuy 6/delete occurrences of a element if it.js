@@ -11,7 +11,14 @@ const deleteNth = (arr, n) => {
         }
     })
 
+
     return newArr
 }
+
+//2
+/*const deleteNth = (a, x) => {
+    let m = {};
+    return a.filter( v => (m[v] = m[v]+1||1) <= x );
+}*/
 
 console.log(deleteNth([1, 2, 3, 1, 2, 1, 2, 3], 2)) //
