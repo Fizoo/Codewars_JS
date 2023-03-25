@@ -17,40 +17,27 @@ function mix(s1, s2) {
         } else {
             return b[1] - a[1];
         }
-
     }).map(el => {
         el[0] = repeatChar(el)
         el[2] = el[2] === 1 ? '1' : el[2] === 2 ? '2' : '='
         return el
     }).reduce((value, item) => {
-        value += item[2]+':' + item[0] + '/'
+        value += `${item[2]}:${item[0]}/`;
         return value
     }, '').slice(0,-1)
 
 }
 
 function mainArr(arr1,arr2){
-    let res=[]
-    for (let key in arr1) {
-        if(arr2.hasOwnProperty(key)){
-            if(arr1[key]>arr2[key]){
-                res.push([key,arr1[key],1])
-            }
-            else if (arr1[key]<arr2[key]){
-                res.push([key,arr2[key],2])
-            }
-            else res.push([key,arr1[key],3])
-            delete arr2[key];
-        }
+    const keys = new Set([...Object.keys(arr1), ...Object.keys(arr2)]);
 
-        else res.push([key,arr1[key],1])
-    }
-
-    for (let key in arr2) {
-        res.push([key, arr2[key],2]);
-    }
-
-    return  res.filter(el=>el[1]>1)
+    return Array.from(keys, key => {
+        const val1 = arr1[key] || 0;
+        const val2 = arr2[key] || 0;
+        const max = Math.max(val1, val2);
+        const type = val1 === val2 ? 3 : val1 > val2 ? 1 : 2;
+        return [key, max, type];
+    }).filter(el => el[1] > 1);
 }
 function splitStr(str) {
 
@@ -59,10 +46,7 @@ function splitStr(str) {
         return obj
     }, {})
 }
-function repeatChar(strArr) {
-    const char = strArr[0];
-    const count = strArr[1];
-
+function repeatChar([char, count]) {
     return char.repeat(count);
 }
 
